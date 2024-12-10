@@ -8,7 +8,7 @@ TEMPLATE = """
 from lib import io
 
 
-def main(problem_input: str) -> None:
+def main(problem_input) -> None:
     {process_input_marker}
 {{input_processing}}
     {calculate_result_marker}
@@ -19,15 +19,11 @@ def main(problem_input: str) -> None:
 
 if __name__ == "__main__":
     with open("{{input_file_name}}", "r") as f:
-        main(f.read())
+        main(f.readlines())
 """.format(
     process_input_marker=PROCESS_INPUT_MARKER,
     calculate_result_marker=CALCULATE_RESULT_MARKER,
     print_result_marker=PRINT_RESULT_MARKER,
 )
 
-DEFAULT_INPUT_PROCESSING = """
-    for line in problem_input.splitlines():
-        pass
-
-"""
+DEFAULT_INPUT_PROCESSING = ""

@@ -30,8 +30,9 @@ class Startup:
         self.problem_name: str = title[title.find(":") + 2 : -4]
         self.problem_path_name = self.problem_name.lower().replace(" ", "-")
         self.part = len(soup.findAll("h2"))
-        self.code_file_name = f"src/{YEAR}/{self.day}/{self.problem_path_name}-code-part-{self.part}.py"
-        self.input_file_name = f"src/{YEAR}/{self.day}/{self.problem_path_name}-input"
+        self.file_prefix = f"{self.directory}{self.problem_path_name}"
+        self.code_file_name = f"{self.file_prefix}-code-part-{self.part}.py"
+        self.input_file_name = f"{self.file_prefix}-input.txt"
         print(f"You are on part {self.part} of question {self.problem_name} ({YEAR} day {self.day})")
 
     def set_up_workspace(self) -> None:
@@ -44,13 +45,13 @@ class Startup:
     def prior_code_file_name(self) -> str:
         if self.part <= 1:
             raise ValueError("No previous part")
-        return f"src/{YEAR}/{self.day}/{self.problem_path_name}-code-part-{self.part - 1}.py"
+        return f"{self.file_prefix}-code-part-{self.part - 1}.py"
 
     def _create_directory_if_nonexistent(self) -> None:
-        directory = f"src/{YEAR}/{self.day}/"
-        if not os.path.isdir(directory):
+        self.directory = f"{YEAR}/{self.day}/"
+        if not os.path.isdir(self.directory):
             print("Creating directory")
-            os.makedirs(directory)
+            os.makedirs(self.directory)
 
     def download_and_store_input(self) -> None:
         response = self.session.get(f"https://adventofcode.com/{YEAR}/day/{self.day}/input")
