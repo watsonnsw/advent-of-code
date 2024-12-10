@@ -5,18 +5,14 @@ import shutil
 import requests
 from bs4 import BeautifulSoup
 
-from constants import (
-    CALCULATE_RESULT_MARKER,
+from workspace.constants import (
     DEFAULT_INPUT_PROCESSING,
     OPEN_FILE,
     OVERWRITE_QUERY,
-    PROCESS_INPUT_MARKER,
-    PROCESSING_QUERY,
-    SAME_INPUT_TEXT,
     TEMPLATE,
     YEAR,
 )
-from session_cookie import SESSION_COOKIE
+from workspace.session_cookie import SESSION_COOKIE
 
 
 class Startup:
@@ -34,8 +30,8 @@ class Startup:
         self.problem_name: str = title[title.find(":") + 2 : -4]
         self.problem_path_name = self.problem_name.lower().replace(" ", "-")
         self.part = len(soup.findAll("h2"))
-        self.code_file_name = f"{YEAR}/{self.day}/{self.problem_path_name}-code-part-{self.part}.py"
-        self.input_file_name = f"{YEAR}/{self.day}/{self.problem_path_name}-input"
+        self.code_file_name = f"src/{YEAR}/{self.day}/{self.problem_path_name}-code-part-{self.part}.py"
+        self.input_file_name = f"src/{YEAR}/{self.day}/{self.problem_path_name}-input"
         print(f"You are on part {self.part} of question {self.problem_name} ({YEAR} day {self.day})")
 
     def set_up_workspace(self) -> None:
@@ -48,12 +44,13 @@ class Startup:
     def prior_code_file_name(self) -> str:
         if self.part <= 1:
             raise ValueError("No previous part")
-        return f"{YEAR}/{self.day}/{self.problem_path_name}-code-part-{self.part - 1}.py"
+        return f"src/{YEAR}/{self.day}/{self.problem_path_name}-code-part-{self.part - 1}.py"
 
     def _create_directory_if_nonexistent(self) -> None:
-        if not os.path.isdir(f"{YEAR}/{self.day}/"):
+        directory = f"src/{YEAR}/{self.day}/"
+        if not os.path.isdir(directory):
             print("Creating directory")
-            os.makedirs(f"{YEAR}/{self.day}/")
+            os.makedirs(directory)
 
     def download_and_store_input(self) -> None:
         response = self.session.get(f"https://adventofcode.com/{YEAR}/day/{self.day}/input")
