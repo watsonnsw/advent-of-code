@@ -34,24 +34,23 @@ class Dir:
 
 class Grid(dict):
     def __init__(self, problem_input: str) -> None:
-        split_input = problem_input.splitlines()
-        self.m = len(split_input)
-        self.n = len(split_input[0])
-        for i, line in enumerate(split_input):
-            for j, c in enumerate(line):
+        self.m = len(problem_input)
+        self.n = len(problem_input[0])
+        for i, line in enumerate(problem_input):
+            for j, c in enumerate(line.strip()):
                 self[(i, j)] = c
 
     def find(self, target_value):
         for key, value in self.items():
             if value == target_value:
-                return key
+                return Loc(key)
         return None
     
     def findall(self, target_value):
         keys = []
         for key, value in self.items():
             if value == target_value:
-                keys.append(key)
+                keys.append(Loc(key))
         return keys
 
     def __str__(self) -> str:
@@ -68,6 +67,12 @@ class Grid(dict):
 
     def cols(self):
         return range(self.n)
+
+    def valueset(self):
+        result = set()
+        for values in self.values():
+            result |= set(values)
+        return result
 
 
 class GridDfs:
