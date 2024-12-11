@@ -19,7 +19,8 @@ def main(problem_input) -> None:
 
 if __name__ == "__main__":
     with open("{{input_file_name}}", "r") as f:
-        main(f.readlines())
+        file_text = f.read()
+        main(file_text.splitlines())
 """.format(
     process_input_marker=PROCESS_INPUT_MARKER,
     calculate_result_marker=CALCULATE_RESULT_MARKER,
