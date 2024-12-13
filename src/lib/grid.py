@@ -38,19 +38,19 @@ class Grid(dict):
         self.n = len(problem_input[0])
         for i, line in enumerate(problem_input):
             for j, c in enumerate(line.strip()):
-                self[(i, j)] = c
+                self[Loc(i, j)] = c
 
     def find(self, target_value):
         for key, value in self.items():
             if value == target_value:
-                return Loc(key)
+                return key
         return None
     
     def findall(self, target_value):
         keys = []
         for key, value in self.items():
             if value == target_value:
-                keys.append(Loc(key))
+                keys.append(key)
         return keys
 
     def __str__(self) -> str:
@@ -73,25 +73,3 @@ class Grid(dict):
         for values in self.values():
             result |= set(values)
         return result
-
-
-class GridDfs:
-    def __init__(self, grid: Grid, start: Loc) -> None:
-        self.grid = grid
-        self.queue = deque()
-        self.seen = set()
-        self.queue.append((start, 0))
-
-    def dfs(self): 
-        while self.queue:
-            location, distance = self.queue.popleft()
-            if location not in self.grid:
-                continue
-            if location in self.seen:
-                continue
-            self.seen.add(location)
-            item = self.grid[location]
-            # edit logic here
-
-            for dir in Dir.ALL:
-                self.queue.append((location + dir, distance + 1))

@@ -4,6 +4,7 @@ import sys
 import shutil
 import requests
 from bs4 import BeautifulSoup
+import pyperclip
 
 from workspace.constants import (
     DEFAULT_INPUT_PROCESSING,
@@ -76,6 +77,7 @@ class Startup:
                         input_processing=DEFAULT_INPUT_PROCESSING,
                     )
                 )
+            pyperclip.copy(f"python3 -m {self.code_file_name[:-3].replace("/", ".")}")
         subprocess.run(OPEN_FILE + [self.code_file_name])
 
 
