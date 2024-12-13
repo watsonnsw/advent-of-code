@@ -1,5 +1,5 @@
 from collections import deque
-from typing import Self
+from typing import Self, SupportsIndex
 
 
 class Loc(tuple):
@@ -22,6 +22,12 @@ class Loc(tuple):
 
     def __sub__(self, other) -> Self:
         return Loc(self[0] - other[0], self[1] - other[1])
+    
+    def __ge__(self, other) -> bool:
+        return self[0] >= other[0] or self[1] >= other[1]
+    
+    def __mul__(self, value: int) -> tuple:
+        return Loc(self[0] * value, self[1] * value)
 
 
 class Dir:
