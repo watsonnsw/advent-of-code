@@ -7,16 +7,16 @@ def main(problem_input) -> None:
     # process input
     grid = Grid(problem_input)
     # calculate result
-    prev = {location: set([location]) for location in grid.findall("9")}
+    prev = {location: 1 for location in grid.findall("9")}
     for n in range(8, -1, -1):
         cur = {}
         for location in grid.findall(str(n)):
-            score = set()
+            score = 0
             for d in Dir.ALL:
-                score |= prev.get(location + d, set())
+                score += prev.get(location + d, 0)
             cur[location] = score
         prev = cur
-    result = sum([len(s) for s in prev.values()])
+    result = sum(prev.values())
 
     # print result
     io.copy_result(result)
