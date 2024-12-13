@@ -1,6 +1,6 @@
-
 from collections import defaultdict
 from lib import io
+
 
 def main(problem_input) -> None:
     # process input
@@ -17,8 +17,10 @@ def main(problem_input) -> None:
         else:
             files.append((overall_index, block_size))
         overall_index += block_size
+
     def get_score(start_index, fill_length):
         return sum(range(start_index, start_index + fill_length))
+
     for file_index in range(len(files) - 1, -1, -1):
         actual_index, file_size = files[file_index]
         for gap_index, (actual_gap_index, gap_size) in enumerate(gaps):
@@ -33,6 +35,7 @@ def main(problem_input) -> None:
 
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/9/disk-fragmenter-input.txt", "r") as f:

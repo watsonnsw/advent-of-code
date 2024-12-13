@@ -1,7 +1,6 @@
-
 from collections import deque
 from lib import io
-from lib.grid import Dir, Grid, GridDfs
+from lib.grid import Dir, Grid
 
 
 def main(problem_input) -> None:
@@ -9,6 +8,7 @@ def main(problem_input) -> None:
     grid = Grid(problem_input)
     # calculate result
     result = 0
+
     def grid_bfs(start):
         nonlocal grid, seen
         queue = deque([(start, Dir.U)])
@@ -22,7 +22,7 @@ def main(problem_input) -> None:
                 continue
             seen.add(location)
             area += 1
-    
+
             for direction in Dir.ALL:
                 queue.append((location + direction, direction))
         sides = 0
@@ -43,7 +43,6 @@ def main(problem_input) -> None:
                 curr = curr + back
         return area * sides
 
-
     for value in grid.valueset():
         seen = set()
         for location in grid.findall(value):
@@ -51,6 +50,7 @@ def main(problem_input) -> None:
 
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/12/garden-groups-input.txt", "r") as f:

@@ -1,5 +1,6 @@
 import pyperclip
 
+
 def intify(item):
     if type(item) is str:
         try:
@@ -16,7 +17,7 @@ def intify(item):
         return {intify(k): intify(v) for k, v in item.items()}
     return item
 
-    
+
 def copy_result(result) -> None:
     pyperclip.copy(result)
     print(result)

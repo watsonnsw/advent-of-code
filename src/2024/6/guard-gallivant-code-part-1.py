@@ -1,4 +1,3 @@
-
 from lib.grid import Grid, Loc, Dir
 
 
@@ -19,6 +18,7 @@ def main(problem_input: str) -> None:
 
     # print result
     print(result)
+
 
 if __name__ == "__main__":
     with open("2024/6/input/guard-gallivant-input-part-1.txt", "r") as f:

@@ -1,6 +1,6 @@
-
 from collections import deque
 from typing import Self
+
 
 class Loc(tuple):
     def __new__(cls, *args):
@@ -45,7 +45,7 @@ class Grid(dict):
             if value == target_value:
                 return key
         return None
-    
+
     def findall(self, target_value):
         keys = []
         for key, value in self.items():
@@ -73,3 +73,9 @@ class Grid(dict):
         for values in self.values():
             result |= set(values)
         return result
+
+    def get_row(self, row: int):
+        return [self[Loc(row, col)] for col in self.cols()]
+
+    def get_col(self, col: int):
+        return [self[Loc(row, col)] for row in self.rows()]
