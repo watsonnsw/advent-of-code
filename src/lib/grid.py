@@ -44,6 +44,9 @@ class Loc(tuple):
     def __neg__(self) -> Self:
         return Loc(-self[0], -self[1])
 
+    def __mod__(self, other) -> Self:
+        return Loc(self[0] % other[0], self[1] % other[1])
+
     def manhattan_dist(self, other=(0, 0)) -> int:
         return abs(self[0] - other[0]) + abs(self[1] - other[1])
 
@@ -57,6 +60,12 @@ class Dir:
     R = Loc(0, 1)
     L = Loc(0, -1)
     ALL = [U, D, R, L]
+    UL = Loc(-1, -1)
+    UR = Loc(-1, 1)
+    DL = Loc(1, -1)
+    DR = Loc(1, 1)
+    DIAG = [UL, UR, DL, DR]
+    TOTAL = [U, D, R, L, UL, UR, DL, DR]
 
 
 def get_dir(char: str) -> Loc:
@@ -80,6 +89,12 @@ class Grid(dict):
         for i, line in enumerate(problem_input):
             for j, c in enumerate(line.strip()):
                 self[Loc(i, j)] = c
+
+    @classmethod
+    def blank_grid(cls, dimensions, value=".") -> Self:
+        m, n = dimensions
+        grid = [value * n for _ in range(m)]
+        return cls(grid)
 
     def find(self, target_value: str) -> Loc:
         for key, value in self.items():
