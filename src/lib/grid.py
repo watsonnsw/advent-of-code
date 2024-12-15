@@ -22,10 +22,10 @@ class Loc(tuple):
 
     def __sub__(self, other) -> Self:
         return Loc(self[0] - other[0], self[1] - other[1])
-    
+
     def __ge__(self, other) -> bool:
         return self[0] >= other[0] or self[1] >= other[1]
-    
+
     def __mul__(self, value: int) -> tuple:
         return Loc(self[0] * value, self[1] * value)
 
@@ -36,6 +36,7 @@ class Dir:
     R = Loc(0, 1)
     L = Loc(0, -1)
     ALL = [U, D, R, L]
+
 
 def get_dir(char: str) -> Loc:
     match char:

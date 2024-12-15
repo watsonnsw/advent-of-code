@@ -1,4 +1,3 @@
-
 from lib import io
 from lib.grid import Dir, Grid, get_dir
 
@@ -10,6 +9,7 @@ def main(problem_input) -> None:
     grid = Grid(problem_input=board.splitlines())
     # calculate result
     result = 0
+
     def move_if_valid(locations, direction):
         if not locations:
             return True
@@ -38,12 +38,13 @@ def main(problem_input) -> None:
         direction = get_dir(input)
         if move_if_valid(set([cur]), direction):
             cur = cur + direction
-        
+
     for i, j in grid.findall("["):
         result += 100 * i + j
 
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/15/warehouse-woes-input.txt", "r") as f:

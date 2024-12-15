@@ -1,4 +1,3 @@
-
 from lib import io
 from lib.grid import Grid, get_dir
 
@@ -28,12 +27,13 @@ def main(problem_input) -> None:
         grid[cur] = "."
         grid[next_loc] = "@"
         cur = next_loc
-    
+
     for i, j in grid.findall("O"):
         result += 100 * i + j
 
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/15/warehouse-woes-input.txt", "r") as f:

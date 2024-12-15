@@ -1,4 +1,3 @@
-
 from lib import io
 from lib.grid import Dir, Grid
 
@@ -20,6 +19,7 @@ def main(problem_input) -> None:
 
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/10/hoof-it-input.txt", "r") as f:

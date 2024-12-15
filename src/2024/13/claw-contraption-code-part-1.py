@@ -1,8 +1,8 @@
-
 from lib import io
 import re
 
 from lib.grid import Loc
+
 
 def main(problem_input) -> None:
     # process input
@@ -41,6 +41,7 @@ Prize: X\=(\d*), Y\=(\d*)"""
 
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/13/claw-contraption-input.txt", "r") as f:

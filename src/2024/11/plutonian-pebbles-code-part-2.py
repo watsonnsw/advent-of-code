@@ -1,4 +1,3 @@
-
 from collections import Counter
 from lib import io
 
@@ -26,6 +25,7 @@ def main(problem_input) -> None:
 
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/11/plutonian-pebbles-input.txt", "r") as f:
