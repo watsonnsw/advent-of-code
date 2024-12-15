@@ -37,6 +37,19 @@ class Dir:
     L = Loc(0, -1)
     ALL = [U, D, R, L]
 
+def get_dir(char: str) -> Loc:
+    match char:
+        case "^":
+            return Dir.U
+        case "v":
+            return Dir.D
+        case ">":
+            return Dir.R
+        case "<":
+            return Dir.L
+        case _:
+            raise ValueError(f"Couldn't process direction: {char}")
+
 
 class Grid(dict):
     def __init__(self, problem_input: str) -> None:
