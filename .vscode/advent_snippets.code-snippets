@@ -34,5 +34,11 @@
 			"        for direction in Dir.ALL:",
 			"            queue.append(location + direction)"
 		],
+	},
+	"Insert test case": {
+		"scope": "python",
+		"prefix": "test",
+		"description": "Insert a test case from the website",
+		"body": "file_text = \"\"\"$0\"\"\""
 	}
 }
