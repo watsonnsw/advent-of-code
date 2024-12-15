@@ -8,7 +8,7 @@ from lib.grid import Dir, Loc, Grid
 
 def main(problem_input) -> None:
     # process input
-    dimensions = Loc(101, 103)
+    dimensions = Loc(103, 101)
 
     class Robot:
         def __init__(self, p, v) -> None:
@@ -30,25 +30,34 @@ def main(problem_input) -> None:
     for line in problem_input:
         match = re.search(pattern="p=([-0-9]+),([-0-9]+) v=([-0-9]+),([-0-9]+)", string=line)
         px, py, vx, vy = [match[index] for index in range(1, 5)]
-        robots.append(Robot((px, py), (vx, vy)))
+        robots.append(Robot((py, px), (vy, vx)))
 
     # calculate result
     grid = Grid.blank_grid(dimensions)
-    for index in range(10000):
+    result = 0
+    steps = 0
+    while not result:
         for robot in robots:
+            robot.move()
+        steps += 1
+
+        positions = set([robot.position for robot in robots])
+        for location in positions:
             surrounded = True
             for direction in Dir.TOTAL:
-                if robot.position + direction not in grid or grid[robot.position + direction] != "#":
+                if location + direction not in positions:
                     surrounded = False
                     break
             if surrounded:
-                io.copy_result(index)
-                print(grid)
+                result = steps
                 break
-        for robot in robots:
-            grid[robot.position] = "."
-            robot.move()
-            grid[robot.position] = "#"
+
+    # print result
+    grid = Grid.blank_grid(dimensions)
+    for location in positions:
+        grid[location] = "#"
+    print(grid)
+    io.copy_result(result)
 
 
 if __name__ == "__main__":
