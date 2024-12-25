@@ -53,6 +53,17 @@ class Loc(tuple):
     def dist(self, other=(0, 0)) -> float:
         return math.sqrt((self[0] - other[0]) ** 2 + (self[1] - other[1]) ** 2)
 
+    def dir_char(self) -> str:
+        match self:
+            case x, y if abs(x) >= abs(y) and x < 0:
+                return "^"
+            case x, y if abs(x) >= abs(y) and x > 0:
+                return "v"
+            case x, y if abs(y) > abs(x) and y < 0:
+                return "<"
+            case x, y if abs(y) >= abs(x) and y > 0:
+                return ">"
+
 
 class Dir:
     U = Loc(-1, 0)

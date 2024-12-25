@@ -17,14 +17,14 @@
 	// }
 	"Grid search function": {
 		"scope": "python",
-		"prefix": "bfs",
-		"description": "Breadth first search function template on a gridgraph",
+		"prefix": "gsearch",
+		"description": "Search function template on a gridgraph",
 		"body": [
-			"def grid_bfs(start):",
+			"def grid_search(start):",
 			"    nonlocal grid, seen",
-			"    queue = deque([start])",
+			"    queue = [start]",
 			"    while queue:",
-			"        location = queue.popleft()",
+			"        location = queue.pop()",
 			"        if location not in grid:",
 			"            continue",
 			"        if location in seen:",
