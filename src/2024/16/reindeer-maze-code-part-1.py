@@ -9,6 +9,7 @@ def main(problem_input) -> None:
 
     # calculate result
     seen = set()
+
     def grid_search(start):
         nonlocal grid, seen
         queue: list[Loc, Loc, int] = [start]
@@ -25,9 +26,11 @@ def main(problem_input) -> None:
             for dir in (direction.rotate_clockwise(), direction.rotate_counterclockwise()):
                 heappush(queue, (score + 1001, location + dir, dir))
             heappush(queue, (score + 1, location + direction, direction))
+
     result = grid_search((0, grid.find("S"), Dir.R))
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/16/reindeer-maze-input.txt", "r") as f:

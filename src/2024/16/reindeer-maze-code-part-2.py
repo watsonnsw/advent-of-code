@@ -11,6 +11,7 @@ def main(problem_input) -> None:
     # calculate result
     seen = {}
     paths = set()
+
     @cache
     def search(location, direction, score):
         nonlocal seen, paths, grid
@@ -27,10 +28,12 @@ def main(problem_input) -> None:
         if res:
             paths.add(location)
         return res
+
     search(grid.find("S"), Dir.R, 0)
     result = len(paths)
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/16/reindeer-maze-input.txt", "r") as f:

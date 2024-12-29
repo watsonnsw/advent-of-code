@@ -1,4 +1,3 @@
-
 from lib import io
 
 
@@ -15,6 +14,7 @@ def main(problem_input) -> None:
     # calculate result
     result = []
     instruction_pointer = 0
+
     def combo(op: int) -> int:
         if 4 <= op <= 6:
             return register[chr(ord("A") + op - 4)]
@@ -24,7 +24,7 @@ def main(problem_input) -> None:
         opcode, operand = program[instruction_pointer], program[instruction_pointer + 1]
         match opcode:
             case 0:
-                register["A"] //= (1 << combo(operand))
+                register["A"] //= 1 << combo(operand)
             case 1:
                 register["B"] ^= operand
             case 2:
@@ -45,6 +45,7 @@ def main(problem_input) -> None:
     # print result
     print(register, result)
     io.copy_result(",".join([str(x) for x in result]))
+
 
 if __name__ == "__main__":
     with open("2024/17/chronospatial-computer-input.txt", "r") as f:

@@ -1,4 +1,3 @@
-
 from collections import deque
 from lib import io
 from lib.grid import Dir, Grid, Loc
@@ -16,6 +15,7 @@ def main(problem_input) -> None:
         grid[locations[index]] = "#"
     result = 0
     seen = set()
+
     def grid_search(start):
         nonlocal grid, seen
         queue = deque([start])
@@ -28,12 +28,14 @@ def main(problem_input) -> None:
             if location == (70, 70):
                 return steps
             seen.add(location)
-    
+
             for direction in Dir.ALL:
                 queue.append((location + direction, steps + 1))
+
     result = grid_search((Loc(0, 0), 0))
     # print result
     io.copy_result(result)
+
 
 if __name__ == "__main__":
     with open("2024/18/ram-run-input.txt", "r") as f:
