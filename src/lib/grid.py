@@ -64,6 +64,12 @@ class Loc(tuple):
             case x, y if abs(y) >= abs(x) and y > 0:
                 return ">"
 
+    def all_adjacents(self) -> list[Loc]:
+        adjacents = []
+        for dir in Dir.TOTAL:
+            adjacents.append(self + dir)
+        return adjacents
+
 
 class Dir:
     U = Loc(-1, 0)
@@ -94,7 +100,7 @@ def get_dir(char: str) -> Loc:
 
 
 class Grid(dict):
-    def __init__(self, problem_input: str) -> None:
+    def __init__(self, problem_input: list[str]) -> None:
         self.m = len(problem_input)
         self.n = len(problem_input[0])
         for i, line in enumerate(problem_input):
