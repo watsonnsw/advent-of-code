@@ -77,7 +77,7 @@ class Startup:
                         input_processing=DEFAULT_INPUT_PROCESSING,
                     )
                 )
-            pyperclip.copy(f"uv run {self.code_file_name[:-3]}")
+            pyperclip.copy(f"uv run {self.code_file_name[:-3]}.py")
         subprocess.run(OPEN_FILE + [self.code_file_name])
 
 
