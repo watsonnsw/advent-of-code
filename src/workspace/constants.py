@@ -8,7 +8,7 @@ TEMPLATE = """
 from lib import io
 
 
-def main(problem_input) -> None:
+def main(problem_input: list[str]) -> None:
     {process_input_marker}
 {{input_processing}}
     {calculate_result_marker}
