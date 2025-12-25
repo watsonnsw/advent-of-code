@@ -6,14 +6,14 @@ import requests
 from bs4 import BeautifulSoup
 import pyperclip
 
-from workspace.constants import (
+from constants import (
     DEFAULT_INPUT_PROCESSING,
     OPEN_FILE,
     OVERWRITE_QUERY,
     TEMPLATE,
     YEAR,
 )
-from workspace.session_cookie import SESSION_COOKIE
+from session_cookie import SESSION_COOKIE
 
 
 class Startup:

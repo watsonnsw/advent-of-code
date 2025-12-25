@@ -3,7 +3,7 @@ CALCULATE_RESULT_MARKER = "# calculate result"
 PRINT_RESULT_MARKER = "# print result"
 OPEN_FILE = ["code"]
 OVERWRITE_QUERY = "Code for this problem already exists. Would you like to overwrite it? (y/n)\n"
-YEAR = "2024"
+YEAR = "2025"
 TEMPLATE = """
 from lib import io
 
